@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarRentalDbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Car_Hire_Entities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Bookings" EntityType="CarRentalDbModel.Booking" />
+    <EntitySet Name="Cars" EntityType="CarRentalDbModel.Car" />
+    <AssociationSet Name="FK__Booking__CarID__239E4DCF" Association="CarRentalDbModel.FK__Booking__CarID__239E4DCF">
+      <End Role="Car" EntitySet="Cars" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="CarID" Type="Int32" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Car" Relationship="CarRentalDbModel.FK__Booking__CarID__239E4DCF" FromRole="Booking" ToRole="Car" />
+  </EntityType>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Make" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="Model" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="Size" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Bookings" Relationship="CarRentalDbModel.FK__Booking__CarID__239E4DCF" FromRole="Car" ToRole="Booking" />
+  </EntityType>
+  <Association Name="FK__Booking__CarID__239E4DCF">
+    <End Role="Car" Type="CarRentalDbModel.Car" Multiplicity="1" />
+    <End Role="Booking" Type="CarRentalDbModel.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="CarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

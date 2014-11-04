@@ -1,0 +1,55 @@
+﻿<Window x:Class="CarHire.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Car Rental App" Height="400" Width="525">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+            <GradientStop Color="#FFFFFFFF" Offset="0"/>
+            <GradientStop Color="CadetBlue" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height=".80*"/>
+            <RowDefinition Height=".20*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="btnBook" Content="Book" HorizontalAlignment="Left" Margin="20,7,0,0" VerticalAlignment="Top" Width="75" Click="btnBook_Click" Grid.Column="1" Grid.Row="2"/>
+        <Label Content="Available Cars" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Margin="5,6,0,0" VerticalAlignment="Top" Width="123" Grid.Row="1"/>
+        <ListBox x:Name="lbxDisplay" Grid.Column="0" Margin="5,35,5,0" SelectionChanged="lbxDisplay_SelectionChanged" Grid.Row="1"/>
+        <Label Content="Selected Car" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Margin="20,6,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.265,1.785" Width="123" Grid.Column="1" Grid.Row="1"/>
+        <TextBlock x:Name="tblkSelectedCar" Grid.Column="1" Margin="25,35,5,0" Grid.Row="1"/>
+        <Label Content="Shifty Nifty Car Rentals" FontFamily="Snap ITC"  FontSize="14" HorizontalAlignment="Left" Margin="20,7,0,0" VerticalAlignment="Top" Width="230" Grid.Column="1"/>
+        <Image x:Name="img1" HorizontalAlignment="Center" Margin="15,30,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <StackPanel HorizontalAlignment="Left" Grid.Row="0" Margin="7,12,0,0"  Orientation="Vertical" Grid.Column="0">
+            <Label Content="Car Type" FontWeight="SemiBold" Margin="0,0,0,15" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label Content="Start Date" FontWeight="SemiBold" Margin="0,0,0,15" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label Content="End Date" FontWeight="SemiBold" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right" Margin="87,10,8,0" VerticalAlignment="Top">
+            <ComboBox x:Name="cbxCarType" HorizontalAlignment="Left" Margin="0,4,-2,17" VerticalAlignment="Top" Width="102" />
+            <DatePicker x:Name="dpStart"  HorizontalAlignment="Left" Margin="0,0,-2,17" VerticalAlignment="Top" Width="102" BorderBrush="#FF0B0B0C" BorderThickness=".5" SelectedDateChanged="dpStart_SelectedDateChanged">
+                <DatePicker.Resources>
+                    <Style TargetType="{x:Type DatePickerTextBox}">
+                        <Setter Property="IsReadOnly" Value="True"/>
+                    </Style>
+                </DatePicker.Resources>
+            </DatePicker>
+            <DatePicker x:Name="dpEnd" HorizontalAlignment="Left" Margin="0,0,-2,17" VerticalAlignment="Top" SelectedDateChanged="dpEnd_SelectedDateChanged" Width="102" BorderBrush="#FF0B0B0C" BorderThickness=".5" >
+                <DatePicker.Resources>
+                    <Style TargetType="{x:Type DatePickerTextBox}">
+                        <Setter Property="IsReadOnly" Value="True"/>
+                    </Style>
+                </DatePicker.Resources>
+            </DatePicker>
+            <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Margin="0,0,-2,0" VerticalAlignment="Top" Width="102" Click="btnSearch_Click"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

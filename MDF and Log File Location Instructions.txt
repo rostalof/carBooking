@@ -1,0 +1,3 @@
+The MDF and log files need to be placed in the 
+C:\Users\'you username' folder for this version to work.
+All updates to the database are carried out immediately and permanently.

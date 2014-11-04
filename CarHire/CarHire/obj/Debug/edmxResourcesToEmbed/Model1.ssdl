@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarRentalDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CarRentalDbModelStoreContainer">
+    <EntitySet Name="Booking" EntityType="CarRentalDbModel.Store.Booking" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Car" EntityType="CarRentalDbModel.Store.Car" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__Booking__CarID__239E4DCF" Association="CarRentalDbModel.Store.FK__Booking__CarID__239E4DCF">
+      <End Role="Car" EntitySet="Car" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CarID" Type="int" Nullable="false" />
+    <Property Name="StartDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="EndDate" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Make" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="Model" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="Size" Type="varchar" Nullable="false" MaxLength="30" />
+  </EntityType>
+  <Association Name="FK__Booking__CarID__239E4DCF">
+    <End Role="Car" Type="CarRentalDbModel.Store.Car" Multiplicity="1" />
+    <End Role="Booking" Type="CarRentalDbModel.Store.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="CarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
